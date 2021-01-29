@@ -1,20 +1,31 @@
 {% extends 'crossbook/base.html' %}
 {% load widget_tweaks %}
-{% block title %}Sign Up{% endblock %}
 
+{% block title %}Sign Up{% endblock %}
 {% block content %}
     <div class="sign-up-form">
         <h1>新規登録</h1>
         <hr class="horizon">
         <form method="POST" action="">
-            <p>{{ form.username.label }}</p>
-            {{ form.username|add_class:'input-box' }}
-            <p>{{ form.email.label }}</p>
-            {{ form.email|add_class:'input-box' }}
-            <p>{{ form.password1.label }}</p>
-            {{ form.password1|add_class:'input-box' }}
-            <p>{{ form.password2.label }}</p>
-            {{ form.password2|add_class:'input-box' }}
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="errorlist">
+                    {% for error in form.non_field_errors %}
+                        <p class="error-message">{{ error|striptags }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% for field in form %}
+                <p>{{ field.label }}</p>
+                <p>{{ field|add_class:"input-box" }}</p>
+                {% if field.errors %}
+                    <div class="errorlist">
+                        {% for error in field.errors %}
+                            <p class="error-message">{{ error|striptags }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
             <button class="submit-button" type="submit">登録</button>
         </form>
         <p class="already-have-an-account">アカウントを既に持っている方は<span><a href="#">こちら</a></span></p>

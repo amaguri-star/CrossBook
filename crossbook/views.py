@@ -20,3 +20,6 @@ def signup(request):
     return render(request, 'crossbook/signup.html', context)
 
 
+def login(request):
+    context = {}
+    return render(request, 'crossbook/login.html', context)

@@ -10,6 +10,20 @@ p {
 }
 
 
+/*エラーメッセージ*/
+
+.errorlist {
+    margin: 0 0 5px 0;
+    padding: 0;
+}
+
+.error-message {
+    color: red;
+    font-size: 13px;
+}
+
+
+
 /*新規登録ページ*/
 
 .sign-up-form {
@@ -34,12 +48,12 @@ p {
     width: 80%;
     height: 30px;
     font-size: 100%;
+    text-align: center;
 }
 
 .input-box + p {
     margin-top: 5px;
 }
-
 
 .submit-button {
     width: 100%;
@@ -51,6 +65,7 @@ p {
     outline: none;
     border: none;
 }
+
 
 .already-have-an-account {
     margin-top: 20px;
