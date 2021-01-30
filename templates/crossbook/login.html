@@ -1,1 +1,25 @@
-<h>loginpage</h>
+{% extends 'crossbook/base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+    <div class="sign-up-form">
+        <h1 class="sign-form-header">ログイン</h1>
+        <hr class="horizon">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="box">
+                <label for="username">ユーザ名</label>
+                <input type="text" name="username" class="input-box" id="username">
+            </div>
+
+            <div class="box">
+                <label for="password">パスワード</label>
+                <input type="password" name="password" class="input-box" id="password">
+            </div>
+
+            <button class="submit-button" type="submit">ログイン</button>
+        </form>
+        <p class="already-have-an-account">まだ新規登録していない方は<span><a href="{% url 'signup' %}">こちら</a></span></p>
+    </div>
+{% endblock %}

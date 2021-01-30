@@ -1,13 +1,48 @@
+/*ナブバー*/
+
 body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
+    background: antiquewhite;
+    height: 100vh;
 }
 
-p {
-    padding: 0;
-    margin: 0;
+.header-content {
+    padding: 0 50px;
+    background-color: #5D495A;
+
 }
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 8vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.logo {
+    margin-left: 30px;
+    color: antiquewhite;
+    text-decoration: none;
+    letter-spacing: 10px;
+    font-size: 25px;
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links li + li {
+    margin-left: 10px;
+    list-style: none;
+}
+
+.nav-links a{
+    color: antiquewhite;
+    text-decoration: none;
+    letter-spacing: 3px;
+}
+
+
 
 
 /*エラーメッセージ*/
@@ -23,25 +58,29 @@ p {
 }
 
 
-
 /*新規登録ページ*/
 
+.sign-form-header {
+    font-size: 30px;
+}
+
 .sign-up-form {
-    width: 300px;
+    width: 350px;
     background: #fff;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
     padding: 20px;
     margin: 8% auto 0 auto;
     text-align: center;
+
 }
 
 .sign-up-form h1 {
-    color: #1c8adb;
+    color: #5D495A;
 }
 
 .horizon {
     border-color: darkgray;
-    margin: 30px 0;
+    margin: 10px 0 30px 0;
 }
 
 .input-box {
@@ -51,14 +90,14 @@ p {
     text-align: center;
 }
 
-.input-box + p {
-    margin-top: 5px;
+.box + .box {
+    margin-top: 10px;
 }
 
 .submit-button {
     width: 100%;
     color: #fff;
-    background-color: #1c8adb;
+    background-color: #5D495A;
     padding: 10px;
     margin-top: 30px;
     border-radius: 20px;
@@ -70,6 +109,7 @@ p {
 .already-have-an-account {
     margin-top: 20px;
 }
+
 
 
 
