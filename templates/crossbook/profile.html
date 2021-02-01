@@ -1,0 +1,7 @@
+{% extends 'crossbook/base.html' %}
+{% block title %}マイページ{% endblock %}
+{% block content %}
+    {{ user.username }}
+    {{ user.email }}
+    <img src="{{ user.profile.image.url }} " alt="user-profile-image">
+{% endblock %}

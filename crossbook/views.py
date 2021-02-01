@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth.models import User
 from .forms import CreateUserForm
 
 
@@ -10,7 +11,6 @@ def home(request):
 
 
 def signup(request):
-    form = CreateUserForm()
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
@@ -18,9 +18,10 @@ def signup(request):
             username = form.cleaned_data.get('username')
             messages.success(request, username + "のアカウントが作成されました")
             return redirect('login')
+    else:
+        form = CreateUserForm()
 
-    context = {'form': form}
-    return render(request, 'crossbook/signup.html', context)
+    return render(request, 'crossbook/signup.html', {'form', form})
 
 
 def login(request):
@@ -42,4 +43,8 @@ def logout(request):
     return redirect('login')
 
 
+def profile(request, pk):
+    user = User.objects.get(id=pk)
+    context = {"user": user}
+    return render(request, 'crossbook/profile.html', context)
 
