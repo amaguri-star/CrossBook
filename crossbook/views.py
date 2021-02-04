@@ -21,7 +21,7 @@ def signup(request):
     else:
         form = CreateUserForm()
 
-    return render(request, 'crossbook/signup.html', {'form', form})
+    return render(request, 'crossbook/signup.html', {'form': form})
 
 
 def login(request):
