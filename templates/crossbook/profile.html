@@ -13,7 +13,7 @@
                     </div>
                     <div class="my-page-left-infos">
                         <div class="info-box">
-                            <div class="my-page-left-info_number">1</div>
+                            <div class="my-page-left-info_number">{{ user.post_set.count }}</div>
                             <div class="my-page-left-info_label">出品数</div>
                         </div>
                         <div class="info-box">
@@ -32,14 +32,18 @@
             </div>
             <ul class="my-page-right">
                 {% for post in posts %}
+
                     <li class="my-page-content-box">
-                        <div class="image-wrapper">
-                            <div class="my-page-content-post-image"
-                                 style="background:url({{ post.image.url }}) no-repeat center;
-                                         background-size: contain;">
+                        <a class="post-link-to-detail-page" href="{% url 'post-detail' post.id %}">
+                            <div class="image-wrapper">
+                                <div class="my-page-content-post-image"
+                                     style="background:url({{ post.image.url }}) no-repeat center;
+                                             background-size: contain;">
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </li>
+
                 {% endfor %}
             </ul>
         </div>

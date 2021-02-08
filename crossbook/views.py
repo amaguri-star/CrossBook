@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.models import User
 from .forms import CreateUserForm, CreatePostForm
+from .models import Post, Profile
 
 
 # Create your views here.
@@ -64,4 +65,9 @@ def sell(request):
     context = {'form': form}
     return render(request, 'crossbook/sell.html', context)
 
+
+def post_detail(request, pk):
+    post = Post.objects.get(id=pk)
+    context = {'post': post}
+    return render(request, 'crossbook/post-detail.html', context)
 

@@ -149,9 +149,6 @@ html {
     margin-left: 30px;
 }
 
-.profile-text {
-    padding: 15px 20px 0;
-}
 
 .profile-text .bio {
     background: rgba(102, 102, 102, 0.2);
@@ -181,6 +178,10 @@ html {
 .my-page-content-post-image {
     width: 100%;
     padding-top: 100%;
+}
+
+.post-link-to-detail-page {
+    display: block;
 }
 
 /*出品ページ*/
@@ -220,4 +221,17 @@ html {
     cursor: pointer;
 }
 
+.post-detail-page-wrapper {
+    margin: 70px 150px;
+    display: flex;
+}
+
+.post-detail-page-left {
+    width: 40%;
+}
+
+.post-detail-page-right {
+    /*background-color: red;*/
+    width: 100%;
+}
 

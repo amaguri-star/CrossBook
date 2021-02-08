@@ -1,0 +1,45 @@
+{% extends 'crossbook/base.html' %}
+{% block title %}投稿詳細ページ{% endblock %}
+{% block content %}
+
+    <div class="post-detail-page">
+        <div class="post-detail-page-wrapper">
+            <div class="post-detail-page-left">
+                <div class="image-wrapper">
+                    <div class="my-page-content-post-image"
+                         style="background:url({{ post.image.url }}) no-repeat center;
+                                 background-size: contain;">
+                    </div>
+                </div>
+                <div class="like-button">
+                    <button>いいね！</button>
+                </div>
+
+            </div>
+            <div class="post-detail-page-right">
+                <table>
+                    <tr>
+                        <th>出品者</th>
+                        <td>{{ post.author.username }}</td>
+                    </tr>
+                    <tr>
+                        <th>著者</th>
+                        <td>芥見　相良</td>
+                    </tr>
+                    <tr>
+                        <th>本のタイトル</th>
+                        <td>{{ post.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>出品日</th>
+                        <td>{{ post.date_published }}</td>
+                    </tr>
+                    <tr>
+                        <td>商品詳細</td>
+                        <td>{{ post.content }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
