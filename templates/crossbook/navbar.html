@@ -5,8 +5,9 @@
         </div>
         <ul class="nav-links">
             <li><a href="{% url 'home' %}">ホーム</a></li>
-            <li><a href="{% url 'profile' user.id %}">プロフィール</a></li>
             {% if request.user.is_authenticated %}
+                <li><a href="{% url 'sell' %}">出品する</a></li>
+                <li><a href="{% url 'profile' user.id %}">プロフィール</a></li>
                 <li><a href="{% url 'logout' %}">ログアウト</a></li>
             {% else %}
                 <li><a href="{% url 'signup' %}">新規登録</a></li>

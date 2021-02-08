@@ -1,0 +1,21 @@
+{% extends 'crossbook/base.html' %}
+{% block title %}出品ページ{% endblock %}
+{% block content %}
+    <div class="sell-content">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="sell-box">
+                    <p>{{ field.label }}</p>
+                    <div class="content">
+                        {{ field }}
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="sell-button">
+                <button type="submit">出品</button>
+            </div>
+        </form>
+
+    </div>
+{% endblock %}

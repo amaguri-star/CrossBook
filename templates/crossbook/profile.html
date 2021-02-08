@@ -30,9 +30,18 @@
                     </div>
                 </div>
             </div>
-            <div class="my-page-content">
-                <p>sample</p>
-            </div>
+            <ul class="my-page-right">
+                {% for post in posts %}
+                    <li class="my-page-content-box">
+                        <div class="image-wrapper">
+                            <div class="my-page-content-post-image"
+                                 style="background:url({{ post.image.url }}) no-repeat center;
+                                         background-size: contain;">
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock %}

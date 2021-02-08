@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.models import User
-from .forms import CreateUserForm
+from .forms import CreateUserForm, CreatePostForm
 
 
 # Create your views here.
@@ -45,6 +45,23 @@ def logout(request):
 
 def profile(request, pk):
     user = User.objects.get(id=pk)
-    context = {"user": user}
+    posts = user.post_set.all()
+    context = {"user": user, 'posts': posts}
     return render(request, 'crossbook/profile.html', context)
+
+
+def sell(request):
+    if request.method == "POST":
+        form = CreatePostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('profile', request.user.id)
+    else:
+        form = CreatePostForm()
+
+    context = {'form': form}
+    return render(request, 'crossbook/sell.html', context)
+
 
