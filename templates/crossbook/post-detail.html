@@ -1,5 +1,5 @@
 {% extends 'crossbook/base.html' %}
-{% block title %}投稿詳細ページ{% endblock %}
+{% block title %}商品詳細ページ{% endblock %}
 {% block content %}
 
     <div class="post-detail-page">
@@ -14,6 +14,10 @@
                 <div class="like-button">
                     <button>いいね！</button>
                 </div>
+                <form method="post" action="{% url 'delete-post' post.id %}">
+                    {% csrf_token %}
+                    <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+                </form>
 
             </div>
             <div class="post-detail-page-right">

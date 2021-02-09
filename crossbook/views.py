@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.models import User
+from django.views.decorators.http import require_POST
 from .forms import CreateUserForm, CreatePostForm, EditProfileForm, EditPostForm
 from .models import Post, Profile
 
@@ -99,11 +100,8 @@ def edit_post(request, pk):
     return render(request, 'crossbook/edit-post.html', context)
 
 
+@require_POST
 def delete_post(request, pk):
-    post = get_object_or_404(Post, id=pk)
-    if request.method == "POST":
-        post.delete()
-        return redirect('profile', post.author_id)
-
-    context = {"post": post}
-    return render(request, 'crossbook/delete-post.html', context)
+    post = Post.objects.get(id=pk)
+    post.delete()
+    return redirect('profile', post.author_id)
