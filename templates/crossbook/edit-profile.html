@@ -1,0 +1,17 @@
+{% extends 'crossbook/base.html' %}
+{% block title %}プロフィール編集ページ{% endblock %}
+{% block content %}
+    <div class="edit-profile-wrapper">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="edit-profile-content">
+                {% for field in form %}
+                    <div class="edit-profile-content-box">
+                        {{ field }}
+                    </div>
+                {% endfor %}
+            </div>
+            <input class="submit-button" type="submit" value="更新">
+        </form>
+    </div>
+{% endblock %}

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.models import User
-from .forms import CreateUserForm, CreatePostForm
+from .forms import CreateUserForm, CreatePostForm, EditProfileForm
 from .models import Post, Profile
 
 
@@ -51,6 +51,19 @@ def profile(request, pk):
     return render(request, 'crossbook/profile.html', context)
 
 
+def edit_profile(request, pk):
+    user = User.objects.get(id=pk)
+    form = EditProfileForm(instance=user.profile)
+
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile', request.user.id)
+    context = {'form': form}
+    return render(request, 'crossbook/edit-profile.html', context)
+
+
 def sell(request):
     if request.method == "POST":
         form = CreatePostForm(request.POST, request.FILES)
@@ -70,4 +83,3 @@ def post_detail(request, pk):
     post = Post.objects.get(id=pk)
     context = {'post': post}
     return render(request, 'crossbook/post-detail.html', context)
-

@@ -21,13 +21,16 @@
                             <div class="my-page-left-info_label">評価数</div>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="profile-text">
-                    <p>プロフィール文</p>
                     <div class="bio">
                         <p>{{ user.profile.text }}</p>
                     </div>
+                </div>
+                <div class="edit-profile-button">
+                    <a href="{% url 'edit-profile' user.id %}"><button>編集する</button></a>
                 </div>
             </div>
             <ul class="my-page-right">
