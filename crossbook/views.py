@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.models import User
-from .forms import CreateUserForm, CreatePostForm, EditProfileForm
+from .forms import CreateUserForm, CreatePostForm, EditProfileForm, EditPostForm
 from .models import Post, Profile
 
 
@@ -83,3 +83,27 @@ def post_detail(request, pk):
     post = Post.objects.get(id=pk)
     context = {'post': post}
     return render(request, 'crossbook/post-detail.html', context)
+
+
+def edit_post(request, pk):
+    post = Post.objects.get(id=pk)
+    form = EditPostForm(instance=post)
+
+    if request.method == "POST":
+        form = EditPostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('post-detail', post.id)
+
+    context = {'form': form}
+    return render(request, 'crossbook/edit-post.html', context)
+
+
+def delete_post(request, pk):
+    post = get_object_or_404(Post, id=pk)
+    if request.method == "POST":
+        post.delete()
+        return redirect('profile', post.author_id)
+
+    context = {"post": post}
+    return render(request, 'crossbook/delete-post.html', context)

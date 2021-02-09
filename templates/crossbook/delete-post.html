@@ -1,0 +1,14 @@
+{% extends 'crossbook/base.html' %}
+{% block title %}投稿削除ページ{% endblock %}
+{% block content %}
+    <br>
+
+    <p>本当に{{ post.title }}を削除してよろしいですか？</p>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <a class="btn btn-warning" href="{% url 'profile' post.author_id %}">やめる</a>
+        <input class="btn btn-danger" type="submit" name="confirm" value="削除">
+    </form>
+
+{% endblock %}
