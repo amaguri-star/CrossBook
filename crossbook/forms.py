@@ -22,13 +22,15 @@ class EditProfileForm(forms.ModelForm):
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['image', 'title', 'content']
+        fields = '__all__'
+        exclude = ['author']
 
 
 class EditPostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['image', 'title', 'content']
+        fields = '__all__'
+        exclude = ['author']
 
 
 

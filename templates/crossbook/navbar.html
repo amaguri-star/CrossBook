@@ -4,6 +4,7 @@
             <h4>CROSSBOOK.</h4>
         </div>
         <ul class="nav-links">
+            <p>{{ request.user.username}}</p>
             <li><a href="{% url 'home' %}">ホーム</a></li>
             {% if request.user.is_authenticated %}
                 <li><a href="{% url 'sell' %}">出品する</a></li>

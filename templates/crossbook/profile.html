@@ -29,9 +29,13 @@
                         <p>{{ user.profile.text }}</p>
                     </div>
                 </div>
-                <div class="edit-profile-button">
-                    <a href="{% url 'edit-profile' user.id %}"><button>編集する</button></a>
-                </div>
+                {% if request.user == user %}
+                    <div class="edit-profile-button">
+                        <a href="{% url 'edit-profile' user.id %}">
+                            <button>編集する</button>
+                        </a>
+                    </div>
+                {% endif %}
             </div>
             <ul class="my-page-right">
                 {% for post in posts %}

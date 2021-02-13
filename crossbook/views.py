@@ -2,12 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from .forms import CreateUserForm, CreatePostForm, EditProfileForm, EditPostForm
 from .models import Post, Profile
 
 
-# Create your views here.
 def home(request):
     return render(request, 'crossbook/home.html')
 
@@ -45,6 +45,7 @@ def logout(request):
     return redirect('login')
 
 
+@login_required(login_url='login')
 def profile(request, pk):
     user = User.objects.get(id=pk)
     posts = user.post_set.all()
@@ -52,6 +53,7 @@ def profile(request, pk):
     return render(request, 'crossbook/profile.html', context)
 
 
+@login_required(login_url='login')
 def edit_profile(request, pk):
     user = User.objects.get(id=pk)
     form = EditProfileForm(instance=user.profile)
@@ -65,6 +67,7 @@ def edit_profile(request, pk):
     return render(request, 'crossbook/edit-profile.html', context)
 
 
+@login_required(login_url='login')
 def sell(request):
     if request.method == "POST":
         form = CreatePostForm(request.POST, request.FILES)
@@ -80,12 +83,14 @@ def sell(request):
     return render(request, 'crossbook/sell.html', context)
 
 
+@login_required(login_url='login')
 def post_detail(request, pk):
     post = Post.objects.get(id=pk)
     context = {'post': post}
     return render(request, 'crossbook/post-detail.html', context)
 
 
+@login_required(login_url='login')
 def edit_post(request, pk):
     post = Post.objects.get(id=pk)
     form = EditPostForm(instance=post)
@@ -100,8 +105,9 @@ def edit_post(request, pk):
     return render(request, 'crossbook/edit-post.html', context)
 
 
+@login_required(login_url='login')
 @require_POST
 def delete_post(request, pk):
-    post = Post.objects.get(id=pk)
+    post = get_object_or_404(Post, id=pk)
     post.delete()
     return redirect('profile', post.author_id)
