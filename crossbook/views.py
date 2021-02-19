@@ -45,6 +45,11 @@ def logout(request):
     return redirect('login')
 
 
+def edit_account(request):
+    context = {}
+    return render(request, 'crossbook/edit-account.html', context)
+
+
 @login_required(login_url='login')
 def profile(request, pk):
     user = User.objects.get(id=pk)
